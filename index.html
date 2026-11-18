@@ -3,987 +3,644 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeepSeek - 探索无限可能</title>
+    <title>护理十大核心制度 · 500单选+500多选</title>
     <style>
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --brand: #4d6bfe;
-            --brand-hover: #3c59f0;
-            --brand-soft: #eef2ff;
-            --text: #1a1a1a;
-            --text-2: #5c6070;
-            --text-3: #9b9fad;
-            --line: #e8eaf0;
-            --bg: #ffffff;
-            --sidebar-bg: #f8f9fc;
-            --hover: #eef1f7;
-        }
-
-        html, body {
-            height: 100%;
+            box-sizing: border-box
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            -webkit-font-smoothing: antialiased;
-            overflow: hidden;
+            margin: 0;
+            padding: 20px 10px 60px;
+            font-family: -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;
+            background: #f2f5f9;
+            color: #22303f;
+            line-height: 1.55
         }
 
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
+        .wrap {
+            max-width: 920px;
+            margin: 0 auto
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: #d8dbe3;
-            border-radius: 3px;
-        }
-
-            ::-webkit-scrollbar-thumb:hover {
-                background: #c3c7d1;
-            }
-
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        /* ============ 布局 ============ */
-        .app {
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        /* ============ 侧边栏 ============ */
-        .sidebar {
-            width: 260px;
-            flex: 0 0 260px;
-            background: var(--sidebar-bg);
-            border-right: 1px solid var(--line);
-            display: flex;
-            flex-direction: column;
-            transition: margin-left .25s ease, transform .25s ease;
-        }
-
-        .app.collapsed .sidebar {
-            margin-left: -260px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            padding: 18px 16px 10px;
-            font-size: 18px;
-            font-weight: 700;
-            letter-spacing: .3px;
-            color: var(--brand);
-        }
-
-            .brand svg {
-                flex: none;
-            }
-
-        .new-chat {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin: 6px 12px 14px;
-            padding: 9px 14px;
-            border-radius: 12px;
-            border: 1px solid #dde3fb;
-            background: #fff;
-            color: var(--brand);
-            font-family: inherit;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: .18s;
-        }
-
-            .new-chat:hover {
-                background: var(--brand-soft);
-                border-color: #c3cfff;
-            }
-
-        .chat-list {
-            flex: 1;
-            overflow-y: auto;
-            padding: 0 8px 12px;
-        }
-
-        .group-label {
-            font-size: 12px;
-            color: var(--text-3);
-            padding: 12px 10px 6px;
-            letter-spacing: .3px;
-        }
-
-        .chat-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 9px 10px;
-            border-radius: 10px;
-            font-size: 13.5px;
-            color: var(--text-2);
-            cursor: pointer;
-            transition: .15s;
-        }
-
-            .chat-item span {
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-            }
-
-            .chat-item svg {
-                flex: none;
-                opacity: .55;
-            }
-
-            .chat-item:hover {
-                background: var(--hover);
-            }
-
-            .chat-item.active {
-                background: #e7ecfd;
-                color: var(--brand);
-            }
-
-                .chat-item.active svg {
-                    opacity: 1;
-                }
-
-        .sidebar-footer {
-            border-top: 1px solid var(--line);
-            padding: 10px 14px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            transition: .15s;
-        }
-
-            .sidebar-footer:hover {
-                background: var(--hover);
-            }
-
-        .avatar {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #4d6bfe, #8ea2ff);
+        header {
+            background: linear-gradient(135deg,#1565c0,#0d47a1);
             color: #fff;
-            display: grid;
-            place-items: center;
-            font-size: 13px;
-            font-weight: 600;
-            flex: none;
+            border-radius: 14px;
+            padding: 20px 22px;
+            box-shadow: 0 6px 18px rgba(13,71,161,.25)
         }
 
-        .user-name {
-            font-size: 13.5px;
-            font-weight: 500;
-        }
+            header h1 {
+                margin: 0 0 6px;
+                font-size: 21px
+            }
 
-        .user-sub {
-            font-size: 11.5px;
-            color: var(--text-3);
-            margin-top: 1px;
-        }
+            header p {
+                margin: 0;
+                font-size: 13px;
+                opacity: .92
+            }
 
-        /* ============ 主区域 ============ */
-        .main {
-            flex: 1;
-            min-width: 0;
+        .bar {
             display: flex;
-            flex-direction: column;
-            position: relative;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 14px 0 20px;
             background: #fff;
+            border-radius: 12px;
+            padding: 12px 16px;
+            box-shadow: 0 2px 8px rgba(20,40,80,.07);
+            font-size: 14px
         }
 
-        .topbar {
-            height: 56px;
-            flex: none;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 14px;
-        }
-
-        .topbar-left, .topbar-right {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .icon-btn {
-            width: 34px;
-            height: 34px;
-            border: none;
-            background: transparent;
-            border-radius: 9px;
-            color: var(--text-2);
-            display: grid;
-            place-items: center;
-            cursor: pointer;
-            transition: .15s;
-        }
-
-            .icon-btn:hover {
-                background: var(--hover);
-                color: var(--text);
+            .bar div {
+                flex: 1 1 150px
             }
 
-        .model-select {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            padding: 6px 10px;
-            border-radius: 9px;
-            font-size: 14.5px;
-            font-weight: 600;
-            color: var(--text);
-            background: transparent;
-            border: none;
-            font-family: inherit;
-            cursor: pointer;
-            transition: .15s;
-        }
-
-            .model-select:hover {
-                background: var(--hover);
+            .bar b {
+                color: #1565c0;
+                font-size: 18px
             }
 
-            .model-select .chev {
-                color: var(--text-3);
-                margin-top: 2px;
-            }
-
-        .badge-new {
-            font-size: 10px;
-            font-weight: 600;
-            color: var(--brand);
-            background: var(--brand-soft);
-            border-radius: 5px;
-            padding: 1px 5px;
-            margin-left: 2px;
+        h2 {
+            font-size: 17px;
+            margin: 26px 0 12px;
+            padding-left: 11px;
+            border-left: 5px solid #1565c0;
+            color: #0d3d75
         }
 
-        /* ============ 聊天区 ============ */
-        .chat-area {
-            flex: 1;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            padding: 8px 16px 0;
-            scroll-behavior: smooth;
-        }
-
-        .welcome {
-            margin: auto;
-            text-align: center;
-            padding-bottom: 30px;
-            animation: fadeUp .5s ease;
-        }
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .welcome-logo {
-            width: 58px;
-            height: 58px;
-            margin: 0 auto 20px;
-            border-radius: 16px;
-            background: var(--brand-soft);
-            display: grid;
-            place-items: center;
-        }
-
-        .welcome h1 {
-            font-size: 27px;
-            font-weight: 600;
-            letter-spacing: .2px;
+        .question {
+            background: #fff;
+            border-radius: 12px;
+            padding: 15px 17px;
             margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(20,40,80,.06);
+            border: 1px solid #e6ecf4
         }
 
-        .welcome p {
-            font-size: 14.5px;
-            color: var(--text-3);
-            line-height: 1.8;
-            max-width: 460px;
-            margin: 0 auto;
-        }
-
-        .prompts {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin: 30px auto 0;
-            max-width: 600px;
-        }
-
-        .prompt {
-            padding: 10px 15px;
-            border: 1px solid var(--line);
-            border-radius: 12px;
-            background: #fff;
-            font-size: 13.5px;
-            color: var(--text-2);
-            font-family: inherit;
-            cursor: pointer;
-            transition: .18s;
-        }
-
-            .prompt:hover {
-                border-color: #c3cfff;
-                color: var(--brand);
-                background: var(--brand-soft);
-                transform: translateY(-1px);
-            }
-
-        /* 消息 */
-        .msg {
-            width: 100%;
-            max-width: 760px;
-            margin: 0 auto 22px;
-            animation: fadeUp .28s ease;
-        }
-
-            .msg.user {
-                display: flex;
-                justify-content: flex-end;
-            }
-
-                .msg.user .bubble {
-                    background: #f0f3fa;
-                    padding: 11px 16px;
-                    border-radius: 16px;
-                    max-width: 78%;
-                    font-size: 15px;
-                    line-height: 1.7;
-                    white-space: pre-wrap;
-                    word-break: break-word;
-                }
-
-            .msg.ai {
-                display: flex;
-                gap: 12px;
-                align-items: flex-start;
-            }
-
-                .msg.ai .ai-avatar {
-                    width: 28px;
-                    height: 28px;
-                    flex: none;
-                    border-radius: 50%;
-                    background: var(--brand-soft);
-                    display: grid;
-                    place-items: center;
-                }
-
-                .msg.ai .content {
-                    font-size: 15px;
-                    line-height: 1.8;
-                    padding-top: 2px;
-                    white-space: pre-wrap;
-                    word-break: break-word;
-                    color: #22242c;
-                }
-
-        .typing {
-            display: flex;
-            gap: 4px;
-            padding: 9px 0;
-        }
-
-            .typing span {
-                width: 6px;
-                height: 6px;
-                border-radius: 50%;
-                background: #c3c9d9;
-                animation: blink 1.2s infinite;
-            }
-
-                .typing span:nth-child(2) {
-                    animation-delay: .18s;
-                }
-
-                .typing span:nth-child(3) {
-                    animation-delay: .36s;
-                }
-
-        @keyframes blink {
-            0%, 80%, 100% {
-                opacity: .3;
-                transform: translateY(0);
-            }
-
-            40% {
-                opacity: 1;
-                transform: translateY(-3px);
-            }
-        }
-
-        /* ============ 输入区 ============ */
-        .composer {
-            flex: none;
-            padding: 6px 16px 14px;
-        }
-
-        .composer-inner {
-            max-width: 760px;
-            margin: 0 auto;
-            background: #fff;
-            border: 1.5px solid #e2e5ee;
-            border-radius: 18px;
-            padding: 12px 12px 9px;
-            transition: border-color .2s, box-shadow .2s;
-            box-shadow: 0 2px 10px rgba(20, 30, 70, .03);
-        }
-
-            .composer-inner:focus-within {
-                border-color: #b9c6ff;
-                box-shadow: 0 0 0 4px rgba(77, 107, 254, .08);
-            }
-
-        #input {
-            width: 100%;
-            border: none;
-            outline: none;
-            resize: none;
-            background: transparent;
-            font-family: inherit;
+        .qtitle {
             font-size: 15px;
-            line-height: 1.65;
-            color: var(--text);
-            max-height: 190px;
-            min-height: 24px;
-            padding: 0 2px;
+            font-weight: 600;
+            margin-bottom: 10px
         }
 
-            #input::placeholder {
-                color: #b2b6c2;
-            }
-
-        .toolbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .tools {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .tool {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 12px;
-            border-radius: 999px;
-            border: 1px solid var(--line);
-            background: #fff;
-            font-family: inherit;
-            font-size: 12.5px;
-            color: var(--text-2);
-            cursor: pointer;
-            transition: .18s;
-            white-space: nowrap;
-        }
-
-            .tool:hover {
-                background: var(--hover);
-            }
-
-            .tool.on {
-                background: var(--brand-soft);
-                border-color: #c3cfff;
-                color: var(--brand);
-                font-weight: 500;
-            }
-
-        .send-area {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .attach {
-            width: 34px;
-            height: 34px;
-            border: none;
-            background: transparent;
-            border-radius: 50%;
-            color: var(--text-2);
-            display: grid;
-            place-items: center;
-            cursor: pointer;
-            transition: .15s;
-        }
-
-            .attach:hover {
-                background: var(--hover);
-                color: var(--text);
-            }
-
-        .send {
-            width: 34px;
-            height: 34px;
-            border: none;
-            border-radius: 50%;
-            background: var(--brand);
-            color: #fff;
-            display: grid;
-            place-items: center;
-            cursor: pointer;
-            transition: .18s;
-        }
-
-            .send:not(:disabled):hover {
-                background: var(--brand-hover);
-                transform: scale(1.05);
-            }
-
-            .send:disabled {
-                background: #e4e6ee;
-                cursor: not-allowed;
-            }
-
-        .disclaimer {
+        .num {
+            display: inline-block;
+            min-width: 22px;
+            height: 22px;
+            line-height: 22px;
             text-align: center;
-            font-size: 11.5px;
-            color: #b2b6c2;
-            margin-top: 9px;
+            background: #1565c0;
+            color: #fff;
+            border-radius: 50%;
+            font-size: 12px;
+            margin-right: 7px;
+            font-weight: 700
         }
 
-        /* ============ 响应式 ============ */
-        @media (max-width: 820px) {
-            .sidebar {
-                position: fixed;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                z-index: 40;
-                box-shadow: 4px 0 24px rgba(20, 30, 70, .08);
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 7px
+        }
+
+        .option {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            background: #f8fafd;
+            border: 1.5px solid #dde5ef;
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 14px;
+            color: #22303f;
+            font-family: inherit;
+            transition: .16s
+        }
+
+            .option:hover:not(:disabled) {
+                border-color: #1565c0;
+                background: #eef5ff
             }
 
-            .app.collapsed .sidebar {
-                margin-left: 0;
-                transform: translateX(-100%);
-                box-shadow: none;
+            .option:disabled {
+                cursor: default
             }
 
-            .welcome h1 {
-                font-size: 22px;
+        .label {
+            flex: 0 0 22px;
+            height: 22px;
+            line-height: 22px;
+            text-align: center;
+            border-radius: 50%;
+            background: #dde5ef;
+            color: #4a5b6e;
+            font-weight: 700;
+            font-size: 12px
+        }
+
+        .option.selected {
+            border-color: #1565c0;
+            background: #e3efff
+        }
+
+            .option.selected .label {
+                background: #1565c0;
+                color: #fff
             }
 
-            .welcome p {
-                font-size: 13.5px;
-                padding: 0 10px;
+        .option.correct {
+            border-color: #2e7d32;
+            background: #e8f5e9
+        }
+
+            .option.correct .label {
+                background: #2e7d32;
+                color: #fff
             }
 
-            .prompts {
-                padding: 0 6px;
+        .option.wrong {
+            border-color: #c62828;
+            background: #ffebee
+        }
+
+            .option.wrong .label {
+                background: #c62828;
+                color: #fff
             }
 
-            .msg.user .bubble {
-                max-width: 88%;
+        .actions {
+            margin-top: 10px
+        }
+
+        .submit {
+            background: #1565c0;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-family: inherit;
+            cursor: pointer
+        }
+
+            .submit:hover:not(:disabled) {
+                background: #0d47a1
             }
+
+            .submit:disabled {
+                background: #b0bec5;
+                cursor: default
+            }
+
+        .feedback {
+            margin-top: 10px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            display: none;
+            line-height: 1.65
+        }
+
+            .feedback.show {
+                display: block
+            }
+
+            .feedback.ok {
+                background: #e8f5e9;
+                border-left: 4px solid #2e7d32;
+                color: #1b5e20
+            }
+
+            .feedback.no {
+                background: #ffebee;
+                border-left: 4px solid #c62828;
+                color: #8e1c1c
+            }
+
+            .feedback.warn {
+                background: #fff8e1;
+                border-left: 4px solid #f9a825;
+                color: #7a5b00
+            }
+
+        .ref {
+            display: block;
+            margin-top: 4px;
+            font-size: 12.5px;
+            color: #4a5b6e
+        }
+
+        .reset {
+            display: block;
+            margin: 28px auto 0;
+            background: #455a64;
+            color: #fff;
+            border: none;
+            border-radius: 9px;
+            padding: 11px 34px;
+            font-size: 15px;
+            font-family: inherit;
+            cursor: pointer
+        }
+
+            .reset:hover {
+                background: #2f3e46
+            }
+
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: #8695a8;
+            margin-top: 24px
         }
     </style>
 </head>
 <body>
+    <div class="wrap">
+        <header>
+            <h1>护理十大核心制度 · 知识测验</h1>
+            <p>500 道单选 + 500 道多选｜答错自动显示正确答案与依据页码｜题目由知识点库程序化生成</p>
+        </header>
+        <div class="bar">
+            <div>已答对：<b id="score">0</b> / 1000</div>
+            <div>单选答对：<b id="sScore">0</b> / 500</div>
+            <div>多选答对：<b id="mScore">0</b> / 500</div>
+        </div>
 
-    <div class="app" id="app">
+        <h2>一、单选题（500 题，点击选项即判分）</h2>
+        <div id="singleArea"></div>
 
-        <!-- ============ 侧边栏 ============ -->
-        <aside class="sidebar">
-            <div class="brand">
-                <svg width="24" height="24" viewBox="0 0 32 32" fill="none">
-                    <ellipse cx="17" cy="18" rx="10" ry="7" fill="#4D6BFE" />
-                    <path d="M8 18.5c-1.9 0-3.6-1-4.5-2.5 1.7-.4 3-1.6 3.6-3.2 1.2 1.1 2 2.6 2.3 4.2-.4.9-1 1.5-1.4 1.5z" fill="#4D6BFE" />
-                    <circle cx="20.2" cy="16.2" r="1.4" fill="#fff" />
-                    <path d="M22.5 8.4c0-1.5.8-2.7 2-3.4" stroke="#4D6BFE" stroke-width="2" stroke-linecap="round" />
-                </svg>
-                <span>DeepSeek</span>
-            </div>
+        <h2>二、多选题（500 题，选完后点“提交答案”，错选、漏选均不得分）</h2>
+        <div id="multiArea"></div>
 
-            <button class="new-chat" id="newChat">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                     stroke-width="2" stroke-linecap="round">
-                    <path d="M12 5v14M5 12h14" />
-                </svg>
-                <span>新对话</span>
-            </button>
-
-            <div class="chat-list" id="chatList">
-                <div class="group-label">今天</div>
-                <div class="chat-item active">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                         stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                    </svg>
-                    <span>帮我写一个登录页面</span>
-                </div>
-                <div class="chat-item">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                         stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                    </svg>
-                    <span>解释一下 JavaScript 闭包</span>
-                </div>
-
-                <div class="group-label">昨天</div>
-                <div class="chat-item">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                         stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                    </svg>
-                    <span>用 Python 读取 Excel 文件</span>
-                </div>
-                <div class="chat-item">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                         stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                    </svg>
-                    <span>帮我润色一段产品文案</span>
-                </div>
-
-                <div class="group-label">7 天内</div>
-                <div class="chat-item">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                         stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                    </svg>
-                    <span>讲讲量子计算的原理</span>
-                </div>
-            </div>
-
-            <div class="sidebar-footer">
-                <div class="avatar">我</div>
-                <div style="flex:1;min-width:0">
-                    <div class="user-name">我的账户</div>
-                    <div class="user-sub">免费版</div>
-                </div>
-                <button class="icon-btn" title="设置">
-                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                         stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="3" />
-                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9c.14.6.68 1.03 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
-                    </svg>
-                </button>
-            </div>
-        </aside>
-
-        <!-- ============ 主区域 ============ -->
-        <main class="main">
-            <header class="topbar">
-                <div class="topbar-left">
-                    <button class="icon-btn" id="toggleSidebar" title="收起侧边栏">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="4" width="18" height="16" rx="3" />
-                            <path d="M9 4v16" />
-                        </svg>
-                    </button>
-                    <button class="model-select">
-                        DeepSeek-V3
-                        <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m6 9 6 6 6-6" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="topbar-right">
-                    <button class="icon-btn" title="分享">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                             stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7" />
-                            <path d="M12 3v13" />
-                            <path d="m8 7 4-4 4 4" />
-                        </svg>
-                    </button>
-                    <button class="icon-btn" title="更多">
-                        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
-                            <circle cx="5" cy="12" r="1.7" />
-                            <circle cx="12" cy="12" r="1.7" />
-                            <circle cx="19" cy="12" r="1.7" />
-                        </svg>
-                    </button>
-                </div>
-            </header>
-
-            <!-- 聊天内容区 -->
-            <div class="chat-area" id="chatArea">
-                <div class="welcome" id="welcome">
-                    <div class="welcome-logo">
-                        <svg width="34" height="34" viewBox="0 0 32 32" fill="none">
-                            <ellipse cx="17" cy="18" rx="10" ry="7" fill="#4D6BFE" />
-                            <path d="M8 18.5c-1.9 0-3.6-1-4.5-2.5 1.7-.4 3-1.6 3.6-3.2 1.2 1.1 2 2.6 2.3 4.2-.4.9-1 1.5-1.4 1.5z" fill="#4D6BFE" />
-                            <circle cx="20.2" cy="16.2" r="1.4" fill="#fff" />
-                            <path d="M22.5 8.4c0-1.5.8-2.7 2-3.4" stroke="#4D6BFE" stroke-width="2" stroke-linecap="round" />
-                        </svg>
-                    </div>
-                    <h1>我是 DeepSeek，很高兴见到你！</h1>
-                    <p>我可以帮你写代码、读文件、写作各种创意内容，请把你的任务交给我吧~</p>
-
-                    <div class="prompts">
-                        <button class="prompt">帮我写一个响应式网页</button>
-                        <button class="prompt">解释一下什么是机器学习</button>
-                        <button class="prompt">给我一份周末旅行计划</button>
-                        <button class="prompt">帮我把这段英文翻译成中文</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 输入区 -->
-            <div class="composer">
-                <div class="composer-inner">
-                    <textarea id="input" rows="1" placeholder="给 DeepSeek 发送消息"></textarea>
-
-                    <div class="toolbar">
-                        <div class="tools">
-                            <button class="tool" id="thinkBtn">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                     stroke-width="1.8" stroke-linejoin="round">
-                                    <path d="m12 3 2.2 5.3L19.5 10l-5.3 2.2L12 17.5 9.8 12.2 4.5 10l5.3-1.7z" />
-                                </svg>
-                                深度思考 (R1)
-                            </button>
-                            <button class="tool" id="searchBtn">
-                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                     stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="9" />
-                                    <path d="M3 12h18" />
-                                    <path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z" />
-                                </svg>
-                                联网搜索
-                            </button>
-                        </div>
-
-                        <div class="send-area">
-                            <button class="attach" title="上传附件">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                     stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 11.5 12.5 20a5 5 0 0 1-7-7l8-8a3.5 3.5 0 0 1 5 5l-8 8a2 2 0 0 1-3-3l7-7" />
-                                </svg>
-                            </button>
-                            <button class="send" id="sendBtn" disabled title="发送">
-                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                     stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 19V5M6 11l6-6 6 6" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <p class="disclaimer">内容由 AI 生成，请仔细甄别</p>
-            </div>
-        </main>
+        <button class="reset" id="resetBtn">重新答题</button>
+        <footer>依据《附件二-护理十大核心制度-2026年》编写｜页码为附件 PDF 页数</footer>
     </div>
 
     <script>
-        const app = document.getElementById('app');
-        const input = document.getElementById('input');
-        const sendBtn = document.getElementById('sendBtn');
-        const chatArea = document.getElementById('chatArea');
-        const welcome = document.getElementById('welcome');
-        const chatList = document.getElementById('chatList');
+        /* ========== 知识点库：50 个可出题条款 ========== */
+        const K = [
+            { sys: '分级护理', page: 2, topic: '护理级别', desc: '依据患者病情和自理能力分为特级护理、一级护理、二级护理、三级护理共四个级别', points: ['特级护理', '一级护理', '二级护理', '三级护理'] },
+            { sys: '分级护理', page: 3, topic: '特级护理适用', desc: '维持生命、实施抢救性治疗的重症监护患者可确定为特级护理', points: ['维持生命实施抢救性治疗的重症监护患者', '病情危重随时可能发生病情变化需要监护抢救的患者', '各种复杂或大手术后患者', '严重创伤或大面积烧伤患者'] },
+            { sys: '分级护理', page: 3, topic: '特级护理要点', desc: '特级护理应严密观察病情变化并监测生命体征', points: ['严密观察病情变化监测生命体征', '根据医嘱正确实施治疗给药', '根据医嘱准确测量出入量', '正确实施基础护理和专科护理并实施安全措施', '保持患者舒适和功能体位', '实行床旁交接班'] },
+            { sys: '分级护理', page: 3, topic: '一级护理适用', desc: '病情趋向稳定的重症患者可确定为一级护理', points: ['病情趋向稳定的重症患者', '病情不稳定或随时可能变化的患者', '手术后或治疗期间需要严格卧床的患者', '自理能力重度依赖的患者'] },
+            { sys: '分级护理', page: 3, topic: '一级护理巡视', desc: '一级护理应至少每小时巡视患者一次', points: ['至少每小时巡视患者', '根据病情测量生命体征', '根据医嘱正确实施治疗给药', '正确实施基础护理和专科护理', '提供护理相关健康指导'] },
+            { sys: '分级护理', page: 4, topic: '二级护理适用', desc: '病情趋于稳定或未明确诊断前且自理能力轻度依赖的患者可确定为二级护理', points: ['病情趋于稳定或未明确诊断前且自理能力轻度依赖', '病情稳定仍需卧床且自理能力轻度依赖', '病情稳定或处于康复期且自理能力中度依赖'] },
+            { sys: '分级护理', page: 4, topic: '二级护理巡视', desc: '二级护理应至少每2小时巡视患者一次', points: ['至少每2小时巡视患者', '根据病情测量生命体征', '根据医嘱正确实施治疗给药', '正确实施护理措施和安全措施', '提供护理相关健康指导'] },
+            { sys: '分级护理', page: 4, topic: '三级护理', desc: '病情稳定或处于康复期且自理能力轻度依赖或无需依赖的患者可确定为三级护理', points: ['至少每3小时巡视患者', '根据病情测量生命体征', '根据医嘱正确实施治疗给药', '提供护理相关健康指导'] },
+            { sys: '分级护理', page: 4, topic: 'Barthel项目', desc: 'Barthel指数评定包括进食、洗澡、修饰、穿脱衣、控制大小便、如厕、床椅转移、平地行走、上下楼梯10个项目', points: ['进食', '洗澡', '修饰', '穿脱衣', '控制大便', '控制小便', '如厕', '床椅转移', '平地行走', '上下楼梯'] },
+            { sys: '分级护理', page: 7, topic: '自理能力分级', desc: 'Barthel指数总分41-60分属于中度依赖', points: ['重度依赖总分≤40分', '中度依赖总分41-60分', '轻度依赖总分61-90分', '无需依赖总分100分'] },
+            { sys: '执行医嘱', page: 8, topic: '医嘱下达', desc: '医嘱必须由医院具有执业医生资格的医生下达', points: ['医嘱必须由具有执业医生资格的医生下达', '各类药品和检查操作项目均应在长期临时医嘱单上下达', '手术或分娩后要停止术前或产前医嘱重新下达术后或产后医嘱'] },
+            { sys: '执行医嘱', page: 8, topic: '医嘱签名', desc: '下达、执行医嘱必须签名并注明时间', points: ['医嘱要按时按序下达层次分明内容清楚', '下达执行医嘱必须签名并注明时间', '医生下达医嘱后护士应立即复核准确及时执行'] },
+            { sys: '执行医嘱', page: 8, topic: '转抄查对', desc: '医嘱经转抄后须经双人查对无误后方可执行', points: ['医嘱经转抄后须经双人查对', '内服药按时按次发放视患者服下后方可离开', '模糊不清或有疑问医嘱应与医生确认后执行'] },
+            { sys: '执行医嘱', page: 8, topic: '紧急救护', desc: '紧急情况下为抢救垂危患者生命可先行实施必要的紧急救护', points: ['发现病情危急应立即通知医师', '紧急情况下可先行实施必要的紧急救护', '医生补录医嘱后护士及时签名签执行时间'] },
+            { sys: '执行医嘱', page: 8, topic: '医嘱核对', desc: '医嘱应班班核对每日总对并记录问题及整改措施', points: ['医嘱应班班核对每日总对', '护士长每周参与总对医嘱不少于3次', '记录核对时存在问题及整改措施'] },
+            { sys: '查对', page: 10, topic: '三查十对', desc: '服药注射输液前必须严格进行三查十对', points: ['给药前查', '给药中查', '给药后查', '对床号姓名住院号出生年月日', '对药名剂量浓度时间用法有效期'] },
+            { sys: '查对', page: 10, topic: '身份识别方式', desc: '用药治疗前至少同时使用两种患者身份识别方式', points: ['姓名', '出生年月', '病历号', '床号'] },
+            { sys: '查对', page: 11, topic: '取血三查十一对', desc: '取血时双方必须共同做好三查十一对', points: ['血制品有效期', '血制品质量', '输血装置是否完好', '受血者姓名床号住院号出生年月日', '血型包括Rh因子', '交叉配血实验结果', '供血者血型编号血液成分血量采血日期'] },
+            { sys: '查对', page: 13, topic: '身份识别原则', desc: '至少同时使用两种患者身份识别方法，首选姓名+出生日期', points: ['至少同时使用两种身份识别方法', '首选开放式提问由患者自行陈述', '首选姓名+出生日期核对', '姓名相同或相似患者不宜同室', '使用PDA扫码时必须同时口头查对'] },
+            { sys: '查对', page: 14, topic: '腕带佩戴', desc: '腕带佩戴松紧度以可容两指、不能取出为宜', points: ['左手腕', '右手腕', '左脚腕', '右脚腕', '松紧度以可容两指不能取出为宜'] },
+            { sys: '值班交接', page: 18, topic: '晨会交班', desc: '晨会交班按SBAR标准化沟通模式报告患者总数、出入院、转科、手术、危重、死亡等', points: ['患者总数', '出院入院转科', '手术危重死亡', '新入院危重手术患者病情变化', '各管道留置引流情况', '护理不良事件危急值'] },
+            { sys: '值班交接', page: 18, topic: '床边交接', desc: '床边交接重点查看神志、生命体征、伤口敷料、引流管、输液穿刺部位皮肤等', points: ['神志生命体征', '伤口敷料引流管', '输液液体及穿刺部位皮肤', '易受压部位皮肤', '睡眠饮食服药情况', '吸氧心电监护情况'] },
+            { sys: '值班交接', page: 19, topic: '物品交接', desc: '毒麻剧限药品、急救药品器材等应当面交清并登记签名', points: ['毒麻剧限药品', '急救药品和器材', '体温计血压计手电筒', '备用药及高警示药品严格交接班'] },
+            { sys: '值班交接', page: 19, topic: '交接责任', desc: '交接班过程中发现的问题由交班者负责，接班后发现的问题由接班者承担', points: ['交班者负责交接班过程中发现的问题', '接班者承担接班后发现的问题', '交班者对本班未完成治疗处置等必须交待清楚'] },
+            { sys: '值班交接', page: 19, topic: '十不交接', desc: '危重患者抢救时不交接属于“十不交接”内容', points: ['衣着穿戴不整齐不交接', '危重患者抢救时不交接', '病人出入院或死亡转科未处理好不交接', '医嘱未处理不交接', '物品数目不清楚不交接', '各种记录未完成不交接'] },
+            { sys: '危重抢救', page: 20, topic: '抢救物品五定', desc: '抢救物品药品做到“五定”：定品种数量、定点安置、定专人管理、定期消毒灭菌、定期检查维修', points: ['定品种数量', '定点安置', '定专人管理', '定期消毒灭菌', '定期检查维修'] },
+            { sys: '危重抢救', page: 20, topic: '医生未到前', desc: '医生未到之前护理人员应根据病情及时给氧、吸痰、测量血压、建立静脉通道等', points: ['给氧', '吸痰', '测量血压', '建立静脉通道', '行人工呼吸和胸外心脏按压', '配血止血'] },
+            { sys: '危重抢救', page: 20, topic: '就地抢救', desc: '对危重患者应就地抢救，待病情稳定后方可转移', points: ['对危重患者应就地抢救', '待病情稳定后方可转移', '需急诊手术者应积极做好手术准备'] },
+            { sys: '危重抢救', page: 21, topic: '空安瓿核对', desc: '所有药品的空安瓿需经二人核对后方可弃去', points: ['严格执行交接班制度和查对制度', '24小时有专人护理', '所有药品空安瓿需经二人核对后方可弃去', '口头医嘱执行前应复核并提醒医生补记'] },
+            { sys: '危重抢救', page: 21, topic: '抢救记录', desc: '抢救记录应在抢救结束6小时内补记', points: ['抢救结束后做好抢救记录', '记录应在抢救结束6小时内补记', '做好抢救小结总结经验改进工作', '清理用物检查药品及时补充并终末处理'] },
+            { sys: '不良事件', page: 22, topic: '用药事件', desc: '给药错误（对象、药名、时间、剂量、途径、频次、浓度、速度、过期）属于用药事件', points: ['给药错误', '医嘱漏执行', '在缺少医嘱情况下给药', '不做皮试给药', '执行已停止的医嘱', '违反药物配伍禁忌'] },
+            { sys: '不良事件', page: 22, topic: '非计划拔管', desc: '气管插管、胃管、导尿管、深静脉置管等非计划拔管属于护理不良事件', points: ['气管插管', '胃管', '鼻肠营养管', '导尿管', '深静脉置管', '胸腔闭式引流管', '腹腔引流管', '脑室引流管'] },
+            { sys: '不良事件', page: 23, topic: '损害程度分级', desc: '不良事件造成患者永久性伤害属于G级', points: ['A级环境或条件可能引发不良事件', 'B级不良事件发生但未累及患者', 'C级累及患者但没有造成伤害', 'D级需监测或干预阻止伤害', 'E级暂时性伤害需治疗或干预', 'F级暂时性伤害需住院或延长住院', 'G级永久性伤害', 'H级需要治疗挽救生命', 'I级导致患者死亡'] },
+            { sys: '不良事件', page: 23, topic: '严重程度分类', desc: '护理不良事件严重程度分为I类警告事件、II类有后果事件、III类无后果事件、IV类隐患事件', points: ['I类警告事件', 'II类有后果事件', 'III类无后果事件', 'IV类隐患事件'] },
+            { sys: '不良事件', page: 24, topic: '上报时限', desc: 'I级事件应立即汇报当班医师、护士长、科主任，并汇报科护士长、护理部、医务部及主管院领导，当事科室需在1个工作日内网上直报', points: ['I级事件立即汇报当班医师护士长科主任', '汇报科护士长护理部医务部', '报告主管院领导', '1个工作日内网上直报护理不良事件'] },
+            { sys: '护理安全', page: 26, topic: '三级安全管理', desc: '实施院长-护理部主任-护士长三级安全管理体系', points: ['院长', '护理部主任', '护士长', '三级质控护理部质控组科护士长质控组病区质控组'] },
+            { sys: '护理安全', page: 26, topic: '关键人员', desc: '关键人员包括进修护士、新入职护士、实习护士、休假返岗人员', points: ['进修护士', '新入职护士', '实习护士', '休假返岗人员'] },
+            { sys: '护理安全', page: 27, topic: '关键流程', desc: '关键流程包括患者用药、转运、输血、标本采集、危重患者外出检查、围手术期管理等', points: ['患者用药', '转运', '输血', '标本采集', '危重患者外出检查', '围手术期管理'] },
+            { sys: '护理安全', page: 27, topic: '关键部门', desc: '关键部门包括急诊科、手术室、新生儿病房、产房、ICU、CCU、血液净化中心、内镜中心、导管室、消毒供应中心', points: ['急诊科', '手术室', '新生儿病房', '产房', 'ICU', 'CCU', '血液净化中心', '内镜中心', '导管室', '消毒供应中心'] },
+            { sys: '护理安全', page: 27, topic: '高警示药品', desc: '高警示药品全院统一标识，做到安全使用、专人管理、专柜保管、保持固定基数、做好交接并登记', points: ['高警示药品全院统一标识', '专人管理', '专柜保管', '保持固定基数', '做好交接并登记'] },
+            { sys: '医护沟通', page: 29, topic: '口头医嘱', desc: '无特殊情况护士不执行口头医嘱实施治疗或处置', points: ['建立日常诊疗活动过程医护人员之间有效沟通', '正确执行医嘱', '无特殊情况护士不执行口头医嘱实施治疗或处置'] },
+            { sys: '医护沟通', page: 29, topic: '抢救口头医嘱', desc: '紧急抢救时医生下达口头临时医嘱，护士必须向医生复述，严格查对，双方确认无误后方可执行，并保留安瓿、液体瓶等', points: ['护士必须向医生复述', '严格查对双方确认无误后执行', '保留安瓿液体瓶等', '正确记录医嘱下达与执行时间', '抢救结束后及时督促医生补开医嘱'] },
+            { sys: '医护沟通', page: 29, topic: 'SBAR交接班', desc: '利用SBAR交接班模式确保沟通过程中信息的正确、完整与及时性', points: ['SBAR交接班模式', '规范并严格执行重要检查结果和诊断过程的口头电话和书面交接流程', '接获口头或电话通知的重要检查结果需规范完整记录并确认'] },
+            { sys: '医护沟通', page: 29, topic: '危急值登记', desc: '接获口头或电话通知的危急值结果，接获者必须规范完整记录检查结果和报告者姓名并进行确认', points: ['规范完整记录检查结果', '记录报告者姓名', '进行确认', '及时通知医生或有关人员', '必要时在科室危急值登记本上登记'] },
+            { sys: '医护沟通', page: 29, topic: '跨专业协作', desc: '强调跨专业协作，倡导多学科诊疗模式', points: ['为医务人员提供多种沟通方式和渠道', '提升团队合作能力', '倡导多学科诊疗模式'] },
+            { sys: '输血', page: 31, topic: '取血核对', desc: '取血时护士与输血科工作人员共同核对，严格执行输血“三查十一对”', points: ['护士与输血科工作人员共同核对', '严格执行输血三查十一对', '使用专用取血箱拿取平稳避免碰撞剧烈震动', '实习生护工不能取血'] },
+            { sys: '输血', page: 31, topic: '输血前双人核对', desc: '输血前在治疗室进行双人核对，到患者床边携带病历、输血单和血再次双人共同核对', points: ['输血前在治疗室进行双人核对', '到患者床边携带病历输血单和血再次双人共同核对', '确保无误'] },
+            { sys: '输血', page: 31, topic: '输血速度', desc: '输血过程中应先慢后快，观察15分钟无不适后再根据患者病情、年龄及血液制品成分调节滴速', points: ['先慢后快', '观察15分钟无不适后调节滴速', '根据患者病情年龄及血液制品成分调节滴速', '严密观察受血者有无输血反应'] },
+            { sys: '输血', page: 31, topic: '输血反应处理', desc: '患者出现发热、皮肤瘙痒等不适反应，应及时通知医生，减慢输血速度或停止输血，保留余血以备检查分析原因', points: ['及时通知医生', '减慢输血速度或停止输血', '保留余血以备检查分析原因', '对症治疗和护理'] },
+            { sys: '护理文书', page: 33, topic: '书写要求', desc: '护理文书书写应当客观、真实、及时、准确、完整', points: ['客观', '真实', '及时', '准确', '完整'] },
+            { sys: '护理文书', page: 33, topic: '书写用语', desc: '护理文书书写应当使用中文和医学术语', points: ['使用中文', '使用医学术语', '简化字按国务院公布的简化字总表规定书写'] },
+            { sys: '护理文书', page: 33, topic: '日期时间', desc: '各项记录必须有日期、时间，使用阿拉伯数字书写，日期用公历年，采用24小时制记录，具体到分钟', points: ['必须有日期时间', '使用阿拉伯数字书写', '日期用公历年', '采用24小时制记录', '具体到分钟'] },
+            { sys: '护理文书', page: 33, topic: '医护相符', desc: '进行护理文书书写时要求医护相符', points: ['各班记录结束时必须签全名', '各护理文书按要求及时由上级护士或护士长审核签名', '进行护理文书书写时要求医护相符'] },
+            { sys: '护理文书', page: 34, topic: '抢救补记', desc: '因抢救危重病人未能及时书写记录时，当班护士应在抢救后6小时内及时据实补记', points: ['抢救后6小时内补记', '据实补记', '各项记录文件应妥善保管'] }
+        ];
 
-        const WHALE = `
-        <svg width="18" height="18" viewBox="0 0 32 32" fill="none">
-          <ellipse cx="17" cy="18" rx="10" ry="7" fill="#4D6BFE"/>
-          <path d="M8 18.5c-1.9 0-3.6-1-4.5-2.5 1.7-.4 3-1.6 3.6-3.2 1.2 1.1 2 2.6 2.3 4.2-.4.9-1 1.5-1.4 1.5z" fill="#4D6BFE"/>
-          <circle cx="20.2" cy="16.2" r="1.4" fill="#fff"/>
-        </svg>`;
+        /* ========== 工具 ========== */
+        const L = i => String.fromCharCode(65 + i);
+        const PER_TYPE = 500;
+        const K_LEN = K.length;
 
-        /* ---------- 文本框自适应高度 ---------- */
-        function autoGrow() {
-            input.style.height = 'auto';
-            input.style.height = Math.min(input.scrollHeight, 190) + 'px';
+        function shuffle(arr, seed) {
+            const a = arr.slice();
+            let s = seed || 1;
+            for (let i = a.length - 1; i > 0; i--) {
+                s = (s * 9301 + 49297) % 233280;
+                const j = Math.floor(s / 233280 * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
         }
 
-        input.addEventListener('input', () => {
-            autoGrow();
-            sendBtn.disabled = !input.value.trim();
-        });
+        /* ========== 生成单选题 ========== */
+        function buildSingles() {
+            const list = [];
+            for (let i = 0; i < PER_TYPE; i++) {
+                const ki = i % K_LEN;
+                const variant = Math.floor(i / K_LEN);
+                const k = K[ki];
+                const correctText = k.desc;
 
-        input.addEventListener('keydown', e => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                send();
+                // 干扰项：从其他知识点 desc 中取 3 个，按变体偏移，避免与正确项相同
+                const pool = K.filter((_, idx) => idx !== ki).map(x => x.desc);
+                const distractors = [];
+                let p = (ki + 1 + variant * 7) % K_LEN;
+                while (distractors.length < 3) {
+                    if (p !== ki) {
+                        const t = K[p].desc;
+                        if (t !== correctText && !distractors.includes(t)) distractors.push(t);
+                    }
+                    p = (p + 3) % K_LEN;
+                }
+
+                const options = shuffle([correctText, ...distractors], i + 1);
+                const answer = options.indexOf(correctText);
+                list.push({
+                    no: i + 1, type: 'single', topic: k.topic,
+                    q: `关于“${k.sys}”中“${k.topic}”的描述，下列正确的是：`,
+                    options, answer,
+                    ref: `附件第 ${k.page} 页 · ${k.sys} · ${k.topic}`
+                });
             }
-        });
+            return list;
+        }
 
-        /* ---------- 滚动到底部 ---------- */
-        function scrollBottom() {
-            requestAnimationFrame(() => {
-                chatArea.scrollTop = chatArea.scrollHeight;
+        /* ========== 生成多选题 ========== */
+        function buildMultis() {
+            const list = [];
+            for (let i = 0; i < PER_TYPE; i++) {
+                const ki = i % K_LEN;
+                const variant = Math.floor(i / K_LEN);
+                const k = K[ki];
+                const pts = k.points;
+
+                // 正确项数量 2~3，且不超过要点数
+                let correctCount = Math.min(2 + (variant % 2), pts.length);
+                if (correctCount < 2) correctCount = 2;
+                const start = variant % pts.length;
+                const correct = [];
+                for (let c = 0; c < correctCount; c++) {
+                    const idx = (start + c) % pts.length;
+                    if (!correct.includes(pts[idx])) correct.push(pts[idx]);
+                }
+                // 若去重后不足 2 个，补充
+                let ci = 0;
+                while (correct.length < 2 && ci < pts.length) {
+                    if (!correct.includes(pts[ci])) correct.push(pts[ci]);
+                    ci++;
+                }
+
+                // 干扰项：从其他知识点 points 中取，凑足 5 个选项
+                const need = 5 - correct.length;
+                const disPool = [];
+                K.forEach((x, idx) => {
+                    if (idx !== ki) x.points.forEach(t => {
+                        if (!pts.includes(t) && !disPool.includes(t)) disPool.push(t);
+                    });
+                });
+                const distractors = [];
+                let p = (variant * 11 + ki) % disPool.length;
+                while (distractors.length < need && disPool.length) {
+                    const t = disPool[p % disPool.length];
+                    if (!distractors.includes(t) && !correct.includes(t)) distractors.push(t);
+                    p++;
+                }
+                // 极端情况兜底
+                while (distractors.length < need) distractors.push('以上均不是');
+
+                const options = shuffle([...correct, ...distractors], i + 100);
+                const answer = [];
+                options.forEach((t, idx) => { if (correct.includes(t)) answer.push(idx); });
+                answer.sort((a, b) => a - b);
+
+                list.push({
+                    no: i + 1, type: 'multi', topic: k.topic,
+                    q: `“${k.sys}”中“${k.topic}”包括以下哪些内容？（多选）`,
+                    options, answer,
+                    ref: `附件第 ${k.page} 页 · ${k.sys} · ${k.topic}`
+                });
+            }
+            return list;
+        }
+
+        /* ========== 渲染 ========== */
+        const singles = buildSingles();
+        const multis = buildMultis();
+        const state = { s: new Set(), m: new Set() };
+
+        function renderSingles() {
+            const area = document.getElementById('singleArea');
+            area.innerHTML = '';
+            const frag = document.createDocumentFragment();
+            singles.forEach((q, qi) => {
+                const box = document.createElement('div');
+                box.className = 'question';
+                box.dataset.qi = qi;
+
+                const t = document.createElement('div');
+                t.className = 'qtitle';
+                t.innerHTML = `<span class="num">${q.no}</span>${q.q}`;
+                box.appendChild(t);
+
+                const opts = document.createElement('div');
+                opts.className = 'options';
+                q.options.forEach((text, oi) => {
+                    const b = document.createElement('button');
+                    b.className = 'option';
+                    b.dataset.oi = oi;
+                    b.innerHTML = `<span class="label">${L(oi)}</span><span class="text">${text}</span>`;
+                    opts.appendChild(b);
+                });
+                box.appendChild(opts);
+
+                const fb = document.createElement('div');
+                fb.className = 'feedback';
+                box.appendChild(fb);
+                frag.appendChild(box);
             });
+            area.appendChild(frag);
         }
 
-        /* ---------- 添加用户消息 ---------- */
-        function addUser(text) {
-            const el = document.createElement('div');
-            el.className = 'msg user';
-            const bubble = document.createElement('div');
-            bubble.className = 'bubble';
-            bubble.textContent = text;
-            el.appendChild(bubble);
-            chatArea.appendChild(el);
-            scrollBottom();
-        }
+        function renderMultis() {
+            const area = document.getElementById('multiArea');
+            area.innerHTML = '';
+            const frag = document.createDocumentFragment();
+            multis.forEach((q, qi) => {
+                const box = document.createElement('div');
+                box.className = 'question';
+                box.dataset.qi = qi;
 
-        /* ---------- 添加“正在输入” ---------- */
-        function addTyping() {
-            const el = document.createElement('div');
-            el.className = 'msg ai';
-            el.innerHTML = `
-          <div class="ai-avatar">${WHALE}</div>
-          <div class="content">
-            <div class="typing"><span></span><span></span><span></span></div>
-          </div>`;
-            chatArea.appendChild(el);
-            scrollBottom();
-            return el;
-        }
+                const t = document.createElement('div');
+                t.className = 'qtitle';
+                t.innerHTML = `<span class="num">${q.no}</span>${q.q}`;
+                box.appendChild(t);
 
-        /* ---------- 添加 AI 回复 ---------- */
-        function addAI(text) {
-            const el = document.createElement('div');
-            el.className = 'msg ai';
-            el.innerHTML = `<div class="ai-avatar">${WHALE}</div><div class="content"></div>`;
-            el.querySelector('.content').textContent = text;
-            chatArea.appendChild(el);
-            scrollBottom();
-        }
+                const opts = document.createElement('div');
+                opts.className = 'options';
+                q.options.forEach((text, oi) => {
+                    const b = document.createElement('button');
+                    b.className = 'option';
+                    b.dataset.oi = oi;
+                    b.innerHTML = `<span class="label">${L(oi)}</span><span class="text">${text}</span>`;
+                    opts.appendChild(b);
+                });
+                box.appendChild(opts);
 
-        /* ---------- 模拟回复内容 ---------- */
-        function generateReply(text) {
-            if (/你好|hi|hello|嗨/i.test(text)) {
-                return '你好呀！我是 DeepSeek，很高兴见到你 👋\n\n有什么问题都可以问我，比如写代码、翻译、写作、学习答疑，我都会尽力帮你。';
-            }
-            if (/代码|html|css|js|javascript|python|写个|函数|程序/i.test(text)) {
-                return '好的，我来帮你写。下面是一个简单的示例：\n\nfunction greet(name) {\n  return "你好，" + name + "！";\n}\n\nconsole.log(greet("DeepSeek"));\n\n如果你能告诉我具体的技术栈和需求细节，我可以给出更贴合的完整实现。';
-            }
-            if (/翻译|英文|中文/i.test(text)) {
-                return '好的，把需要翻译的内容发给我就行～\n我会尽量保留原文语气，并给出自然流畅的中文表达。';
-            }
-            return '收到！关于「' + text.slice(0, 20) + (text.length > 20 ? '…' : '') + '」，我来帮你分析一下。\n\n1. 先梳理核心需求，明确目标；\n2. 再拆解成可执行的步骤；\n3. 最后逐条落实并检查结果。\n\n（这是一个静态演示页面，回复内容为模拟生成。）';
-        }
+                const actions = document.createElement('div');
+                actions.className = 'actions';
+                const btn = document.createElement('button');
+                btn.className = 'submit';
+                btn.textContent = '提交答案';
+                actions.appendChild(btn);
+                box.appendChild(actions);
 
-        /* ---------- 发送 ---------- */
-        function send() {
-            const text = input.value.trim();
-            if (!text) return;
-
-            input.value = '';
-            input.style.height = 'auto';
-            sendBtn.disabled = true;
-
-            if (welcome) welcome.style.display = 'none';
-
-            addUser(text);
-            addToHistory(text);
-
-            const typing = addTyping();
-            setTimeout(() => {
-                typing.remove();
-                addAI(generateReply(text));
-            }, 900);
-        }
-
-        sendBtn.addEventListener('click', send);
-
-        /* ---------- 新对话加入历史列表 ---------- */
-        function addToHistory(text) {
-            const first = chatList.querySelector('.chat-item');
-            if (first) first.classList.remove('active');
-
-            const item = document.createElement('div');
-            item.className = 'chat-item active';
-            item.innerHTML = `
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-          </svg>
-          <span></span>`;
-            item.querySelector('span').textContent =
-                text.length > 16 ? text.slice(0, 16) + '…' : text;
-
-            const firstLabel = chatList.querySelector('.group-label');
-            firstLabel.insertAdjacentElement('afterend', item);
-        }
-
-        /* ---------- 新对话 ---------- */
-        document.getElementById('newChat').addEventListener('click', () => {
-            chatArea.querySelectorAll('.msg').forEach(m => m.remove());
-            if (welcome) welcome.style.display = '';
-            chatArea.scrollTop = 0;
-            input.value = '';
-            input.style.height = 'auto';
-            sendBtn.disabled = true;
-            input.focus();
-        });
-
-        /* ---------- 功能开关 ---------- */
-        ['thinkBtn', 'searchBtn'].forEach(id => {
-            const btn = document.getElementById(id);
-            btn.addEventListener('click', () => btn.classList.toggle('on'));
-        });
-
-        /* ---------- 推荐问题点击 ---------- */
-        document.querySelectorAll('.prompt').forEach(p => {
-            p.addEventListener('click', () => {
-                input.value = p.textContent;
-                autoGrow();
-                sendBtn.disabled = false;
-                input.focus();
+                const fb = document.createElement('div');
+                fb.className = 'feedback';
+                box.appendChild(fb);
+                frag.appendChild(box);
             });
+            area.appendChild(frag);
+        }
+
+        /* ========== 交互：事件委托 ========== */
+        document.getElementById('singleArea').addEventListener('click', e => {
+            const btn = e.target.closest('.option');
+            if (!btn) return;
+            const box = btn.closest('.question');
+            if (!box || box.dataset.done === '1') return;
+            const qi = +box.dataset.qi;
+            const q = singles[qi];
+            const chosen = +btn.dataset.oi;
+            box.dataset.done = '1';
+
+            const btns = box.querySelectorAll('.option');
+            btns.forEach((b, i) => {
+                b.disabled = true;
+                if (i === q.answer) b.classList.add('correct');
+                if (i === chosen && chosen !== q.answer) b.classList.add('wrong');
+            });
+
+            const fb = box.querySelector('.feedback');
+            if (chosen === q.answer) {
+                state.s.add(qi);
+                fb.className = 'feedback ok show';
+                fb.innerHTML = `✅ 回答正确！正确答案：<b>${L(q.answer)}. ${q.options[q.answer]}</b><span class="ref">依据：${q.ref}</span>`;
+            } else {
+                fb.className = 'feedback no show';
+                fb.innerHTML = `❌ 回答错误。你选择了 <b>${L(chosen)}</b>，正确答案是 <b>${L(q.answer)}. ${q.options[q.answer]}</b><span class="ref">依据：${q.ref}</span>`;
+            }
+            updateScore();
         });
 
-        /* ---------- 侧边栏折叠 ---------- */
-        document.getElementById('toggleSidebar').addEventListener('click', () => {
-            app.classList.toggle('collapsed');
+        document.getElementById('multiArea').addEventListener('click', e => {
+            const box = e.target.closest('.question');
+            if (!box) return;
+
+            // 点击选项：切换选中（未提交前）
+            const opt = e.target.closest('.option');
+            if (opt && box.dataset.done !== '1') {
+                opt.classList.toggle('selected');
+                return;
+            }
+
+            // 点击提交
+            const submit = e.target.closest('.submit');
+            if (!submit || box.dataset.done === '1') return;
+            const qi = +box.dataset.qi;
+            const q = multis[qi];
+            const btns = Array.from(box.querySelectorAll('.option'));
+            const chosen = [];
+            btns.forEach((b, i) => { if (b.classList.contains('selected')) chosen.push(i); });
+
+            const fb = box.querySelector('.feedback');
+            if (chosen.length === 0) {
+                fb.className = 'feedback warn show';
+                fb.innerHTML = '⚠️ 请至少选择一个选项后再提交。';
+                return;
+            }
+
+            box.dataset.done = '1';
+            submit.disabled = true;
+            const correct = q.answer;
+            const isRight = chosen.length === correct.length && chosen.every(i => correct.includes(i));
+
+            btns.forEach((b, i) => {
+                b.disabled = true;
+                b.classList.remove('selected');
+                if (correct.includes(i)) b.classList.add('correct');
+                else if (chosen.includes(i)) b.classList.add('wrong');
+            });
+
+            const correctLetters = correct.map(i => L(i)).join('、');
+            const correctText = correct.map(i => q.options[i]).join('；');
+            const chosenLetters = chosen.sort((a, b) => a - b).map(i => L(i)).join('、');
+
+            if (isRight) {
+                state.m.add(qi);
+                fb.className = 'feedback ok show';
+                fb.innerHTML = `✅ 回答正确！正确答案：<b>${correctLetters}</b><span class="ref">依据：${q.ref}</span>`;
+            } else {
+                fb.className = 'feedback no show';
+                fb.innerHTML = `❌ 回答错误。你的选择：<b>${chosenLetters}</b><br>正确答案：<b>${correctLetters}</b>（${correctText}）<span class="ref">依据：${q.ref}</span>`;
+            }
+            updateScore();
         });
 
-        // 小屏默认收起侧边栏
-        if (window.innerWidth <= 820) app.classList.add('collapsed');
+        function updateScore() {
+            const s = state.s.size, m = state.m.size;
+            document.getElementById('score').textContent = s + m;
+            document.getElementById('sScore').textContent = s;
+            document.getElementById('mScore').textContent = m;
+            if (s + m === PER_TYPE * 2) {
+                document.querySelector('.bar').style.background = '#e8f5e9';
+                document.querySelector('.bar').style.border = '1.5px solid #a5d6a7';
+            }
+        }
 
-        /* ---------- 历史会话切换（演示） ---------- */
-        chatList.addEventListener('click', e => {
-            const item = e.target.closest('.chat-item');
-            if (!item) return;
-            chatList.querySelectorAll('.chat-item').forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
+        function init() {
+            state.s.clear();
+            state.m.clear();
+            document.querySelector('.bar').style.background = '#fff';
+            document.querySelector('.bar').style.border = 'none';
+            renderSingles();
+            renderMultis();
+            updateScore();
+        }
+
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            if (confirm('确定清空所有作答记录并重新开始吗？')) {
+                init();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         });
 
-        /* ---------- 初始化 ---------- */
-        input.focus();
-        autoGrow();
+        init();
     </script>
 </body>
 </html>
